@@ -93,5 +93,10 @@ class Exposition
     {
         return $this->windy;
     }
+    /**
+     * @ORM\OneToOne(targetEntity="Product", inversedBy="prodexpo")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $expoprod;
 }
 

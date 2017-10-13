@@ -93,5 +93,15 @@ class CartLine
     {
         return $this->price;
     }
+    /**
+     * @ORM\ManyToOne(targetEntity="Cart", inversedBy="cartlinecart")
+     * @ORM\JoinColumn(name="cart_id", referencedColumnName="id")
+     */
+    private $cartcartline;
+    /**
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="cartlineprod")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $prodcartline;
 }
 

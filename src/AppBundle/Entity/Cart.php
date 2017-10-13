@@ -134,6 +134,14 @@ class Cart
     * @ORM\OneToOne(targetEntity="PaymentMode", mappedBy="cartpay")
     */
     private $cartpaymode;
+     /**
+     * @ORM\OneToMany(targetEntity="CartLine", mappedBy="cartcartline")
+     */
+    private $cartlinecart;
+
+    public function __construct() {
+        $this->cartlinecart = new ArrayCollection();
+    }
     
 }
 

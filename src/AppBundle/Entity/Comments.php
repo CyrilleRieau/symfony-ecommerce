@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Comments
@@ -100,8 +101,15 @@ class Comments
     private $comclientco;
     
         public function __construct() {
-            $this->comclientco = new \Doctrine\Common\Collections\ArrayCollection();
+            $this->comclientco = new ArrayCollection();
+            $this->comprod = new ArrayCollection();
+            
         }
-    
+    /**
+     * @ORM\ManyToMany(targetEntity="Product", inversedBy="prodcom")
+     * @ORM\JoinTable(name="prod_comments")
+     */
+    private $comprod;
+
 }
 

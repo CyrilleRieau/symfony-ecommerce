@@ -677,5 +677,34 @@ class Product
     {
         return $this->fertilize;
     }
+
+ /**
+     * @ORM\OneToOne(targetEntity="Exposition", mappedBy="expoprod")
+     */
+    private $prodexpo;
+    /**
+     * @ORM\OneToOne(targetEntity="Soil", mappedBy="soilprod")
+     */
+    private $prodsoil;
+    /**
+     * @ORM\OneToOne(targetEntity="Resistance", mappedBy="resistprod")
+     */
+    private $prodresist;
+    /**
+     * @ORM\OneToOne(targetEntity="Irrigation", mappedBy="irrigprod")
+     */
+    private $prodirrig;
+     /**
+     * @ORM\ManyToMany(targetEntity="Comments", mappedBy="comprod")
+     */
+    private $prodcom;
+    /**
+     * @ORM\OneToMany(targetEntity="CartLine", mappedBy="prodcartline")
+     */
+    private $cartlineprod;
+    
+        public function __construct() {
+            $this->cartlineprod = new ArrayCollection();
+        }
 }
 

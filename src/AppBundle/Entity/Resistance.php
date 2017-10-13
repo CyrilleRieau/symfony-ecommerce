@@ -124,5 +124,10 @@ class Resistance
     {
         return $this->superior5°C;
     }
+     /**
+     * @ORM\OneToOne(targetEntity="Product", inversedBy="prodresist")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $resistprod;
 }
 

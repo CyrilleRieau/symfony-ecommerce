@@ -124,5 +124,10 @@ class Irrigation
     {
         return $this->high;
     }
+     /**
+     * @ORM\OneToOne(targetEntity="Product", inversedBy="prodirrig")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $irrigprod;
 }
 

@@ -361,7 +361,5 @@ class ClientConnected
      */
     private $clientcocom;
     
-    
-    
 }
 

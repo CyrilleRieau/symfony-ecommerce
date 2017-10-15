@@ -18,12 +18,13 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use FOS\RestBundle\Controller\Annotations\Get; 
 
 class ProductController extends Controller
 {
-     /**
-     * @Route("/", name="products_list")
-     * @Method({"GET"})
+    
+    /**
+     * @Get ("/products")
      */
     public function getProductsAction(Request $request)
     {
@@ -31,14 +32,17 @@ class ProductController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Product')
             ->findAll();
-
+        if (empty($products)) {
+                return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+            }
     return new JsonResponse($products);
     }
+    
+
     /**
-     * @Route("/products/{id}", name="product_id")
-     * @Method({"GET"})
+     * @Get ("/products/{id}")
      */
-    public function getProductAction(Request $request)
+    public function getProductAction( Request $request)
     {
         $product = $this->getDoctrine()
                 ->getRepository('AppBundle:Product')
@@ -49,6 +53,9 @@ class ProductController extends Controller
             ->getRepository('AppBundle:Exposition')
             ->findAll();
         /* @var $exposition Exposition */
+        if (empty($expositions)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
         foreach($expositions as $exposition) {
         if($exposition->getId() === $product->getId()){
             if ($exposition->getSunny() === true){
@@ -63,6 +70,9 @@ class ProductController extends Controller
             ->getRepository('AppBundle:Irrigation')
             ->findAll();
         /* @var $irrigation Irrigation */
+        if (empty($irrigations)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
         foreach($irrigations as $irrigation) {
         if($irrigation->getId() === $product->getId()){
             if($irrigation->getLow()=== true && $irrigation->getMiddle() !== true && $irrigation->getHigh() !== true){
@@ -78,6 +88,9 @@ class ProductController extends Controller
         ->getRepository('AppBundle:Resistance')
         ->findAll();
         /* @var $resistance Resistance */
+        if (empty($resistances)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
         foreach($resistances as $resistance) {
         if($resistance->getId() === $product->getId()){
             if ($resistance->getInferior0°C() === true && $resistance->getBetween0And5°C() !== true && $resistance->getSuperior5°C() !== true) {
@@ -93,6 +106,9 @@ class ProductController extends Controller
         ->getRepository('AppBundle:Soil')
         ->findAll();
         /* @var $soil Soil */
+        if (empty($soils)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        };
         foreach($soils as $soil) {
         if($soil->getId() === $product->getId()){
             if ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() !== true && $soil->getSandy() !== true && $soil->getHumus() !== true) {

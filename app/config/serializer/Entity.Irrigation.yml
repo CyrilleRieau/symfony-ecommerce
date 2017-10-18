@@ -1,0 +1,11 @@
+AppBundle\Entity\Irrigation:
+    exclusion_policy: none
+    properties:
+      low:
+        groups : ['product']
+      middle:
+        groups : ['product']
+      high:
+        groups : ['product']
+      product_id:
+        groups : ['product']

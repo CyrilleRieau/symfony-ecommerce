@@ -1,0 +1,11 @@
+AppBundle\Entity\Product:
+    exclusion_policy: none
+    properties:
+      inferior_0°C:
+        groups : ['product']
+      between_0_and_5°C:
+        groups : ['product']
+      superior_5°C:
+        groups : ['product']
+      product_id:
+        groups : ['product']

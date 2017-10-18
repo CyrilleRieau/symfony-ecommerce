@@ -1,0 +1,15 @@
+AppBundle\Entity\Soil:
+    exclusion_policy: none
+    properties:
+      acid:
+        groups : ['product']
+      clayey:
+        groups : ['product']
+      chalky:
+        groups : ['product']
+      sandy:
+        groups : ['product']
+      humus:
+        groups : ['product']
+      product_id:    
+        groups : ['product']

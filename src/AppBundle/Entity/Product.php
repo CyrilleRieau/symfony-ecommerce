@@ -36,9 +36,9 @@ class Product
     private $description;
 
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="price", type="float")
+     * @ORM\Column(name="price", type="string", length=255)
      */
     private $price;
 
@@ -50,9 +50,9 @@ class Product
     private $brand;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="adding", type="datetime")
+     * @ORM\Column(name="adding", type="date")
      */
     private $adding;
 
@@ -114,9 +114,9 @@ class Product
     private $variety;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="seedPeriod", type="datetime")
+     * @ORM\Column(name="seedPeriod", type="string", length=255)
      */
     private $seedPeriod;
 
@@ -135,9 +135,9 @@ class Product
     private $type;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="harvest", type="datetime")
+     * @ORM\Column(name="harvest", type="string", length=255)
      */
     private $harvest;
 

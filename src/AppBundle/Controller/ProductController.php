@@ -18,13 +18,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use FOS\RestBundle\Controller\Annotations\Get; 
+use FOS\RestBundle\Controller\Annotations as Rest;
+use AppBundle\Form\Type\PlaceType; 
 
 class ProductController extends Controller
 {
     
     /**
-     * @Get ("/products")
+     * @Rest\View(serializerGroups={"product"})
+     * @Rest\Get ("/products")
      */
     public function getProductsAction(Request $request)
     {
@@ -33,14 +35,17 @@ class ProductController extends Controller
             ->getRepository('AppBundle:Product')
             ->findAll();
         if (empty($products)) {
-                return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+                return new JsonResponse(['message' => 'No products on line'], Response::HTTP_NOT_FOUND);
             }
-    return new JsonResponse($products);
+
+           // dump($products);
+    return ($products);
     }
     
 
     /**
-     * @Get ("/products/{id}")
+     * @Rest\View(serializerGroups={"product"})
+     * @Rest\Get ("/products/{id}")
      */
     public function getProductAction( Request $request)
     {
@@ -147,6 +152,6 @@ class ProductController extends Controller
            'resistance' => $resistance
         ];
 
-    return new JsonResponse($productlist);
+    return ($productlist);
     }
 }    

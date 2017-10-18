@@ -1,0 +1,86 @@
+AppBundle\Entity\Product:
+  attributes:
+    name:
+      groups : ['product'] 
+    description : 
+      groups : ['product']
+    price:
+      groups : ['product']
+    brand :
+      groups : ['product']
+    isPremium :
+      groups : ['product']
+    onSold :
+      groups : ['product']
+    vendor :
+      groups : ['product']
+    note :
+      groups : ['product']
+    numberOfProducts :
+      groups : ['product']
+    numberOfVote : 
+      groups : ['product']
+    numberOfComments :
+      groups : ['product']
+    variety :
+      groups : ['product']
+    seedPeriod :
+      groups : ['product']
+    species :
+      groups : ['product']
+    type :
+      groups : ['product']
+    harvest :
+      groups : ['product']
+    carving :
+      groups : ['product']
+    treatment :
+      groups : ['product']
+    fertilize :
+      groups : ['product']
+
+AppBundle\Entity\Soil:
+  attributes:
+    acid:
+      groups : ['product']
+    clayey:
+      groups : ['product']
+    chalky:
+      groups : ['product']
+    sandy:
+      groups : ['product']
+    humus:
+      groups : ['product']
+    product_id:    
+      groups : ['product']
+
+AppBundle\Entity\Resistance:
+  attributes:
+    inferior_0°C:
+      groups : ['product']
+    between_0_and_5°C:
+      groups : ['product']
+    superior_5°C:
+      groups : ['product']
+    product_id:
+      groups : ['product']
+
+AppBundle\Entity\Irrigation:
+  attributes:
+    low:
+      groups : ['product']
+    middle:
+      groups : ['product']
+    high:
+      groups : ['product']
+    product_id:
+      groups : ['product']
+
+AppBundle\Entity\Exposition:
+  attributes:
+    sunny:
+      groups : ['product']
+    windy:
+      groups : ['product']
+    product_id:
+      groups : ['product']

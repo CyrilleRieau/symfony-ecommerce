@@ -18,19 +18,20 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Get;
 use AppBundle\Form\Type\PlaceType; 
+use JMS\Serializer\SerializerBuilder;
 
 class ProductController extends Controller
 {
     
     /**
-     * @Rest\View(serializerGroups={"product"})
-     * @Rest\Get ("/products")
+     * @View(serializerGroups={"product"})
+     * @Get ("/products")
      */
     public function getProductsAction(Request $request)
-    {
-        $products = $this->getDoctrine()
+    {        $products = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Product')
             ->findAll();
@@ -39,13 +40,13 @@ class ProductController extends Controller
             }
 
            // dump($products);
-    return ($products);
+    return serialize($products);
     }
     
 
     /**
-     * @Rest\View(serializerGroups={"product"})
-     * @Rest\Get ("/products/{id}")
+     * @View(serializerGroups={"product"})
+     * @Get ("/products/{id}")
      */
     public function getProductAction( Request $request)
     {

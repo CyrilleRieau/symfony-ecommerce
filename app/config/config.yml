@@ -91,7 +91,7 @@ fos_rest:
     format_listener:
         rules:
             - { path: '^/', priorities: ['json'], fallback_format: 'json' }        
-
+    
 nelmio_cors:
     defaults:
         allow_credentials: false

@@ -1,41 +1,41 @@
 AppBundle\Entity\Product:
-    exclusion_policy: none
-    properties:
-      name:
-        groups : ['product'] 
-      description : 
-        groups : ['product']
-      price:
-        groups : ['product']
-      brand :
-        groups : ['product']
-      isPremium :
-        groups : ['product']
-      onSold :
-        groups : ['product']
-      vendor :
-        groups : ['product']
-      note :
-        groups : ['product']
-      numberOfProducts :
-        groups : ['product']
-      numberOfVote : 
-        groups : ['product']
-      numberOfComments :
-        groups : ['product']
-      variety :
-        groups : ['product']
-      seedPeriod :
-        groups : ['product']
-      species :
-        groups : ['product']
-      type :
-        groups : ['product']
-      harvest :
-        groups : ['product']
-      carving :
-        groups : ['product']
-      treatment :
-        groups : ['product']
-      fertilize :
-        groups : ['product']
+  exclusion_policy: none
+  properties:
+    name:
+      groups : ['product'] 
+    description: 
+      groups : ['product']
+    price:
+      groups : ['product']
+    brand:
+      groups : ['product']
+    isPremium:
+      groups : ['product']
+    onSold:
+      groups : ['product']
+    vendor:
+      groups : ['product']
+    note:
+      groups : ['product']
+    numberOfProducts:
+      groups : ['product']
+    numberOfVote: 
+      groups : ['product']
+    numberOfComments:
+      groups : ['product']
+    variety:
+      groups : ['product']
+    seedPeriod:
+      groups : ['product']
+    species:
+      groups : ['product']
+    type:
+      groups : ['product']
+    harvest:
+      groups : ['product']
+    carving:
+      groups : ['product']
+    treatment:
+      groups : ['product']
+    fertilize:
+      groups : ['product']

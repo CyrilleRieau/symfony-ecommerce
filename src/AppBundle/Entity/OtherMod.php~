@@ -125,3 +125,4 @@ class OtherMod
         return $this->transfer;
     }
 }
+

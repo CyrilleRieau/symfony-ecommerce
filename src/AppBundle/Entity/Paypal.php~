@@ -94,3 +94,4 @@ class Paypal
         return $this->password;
     }
 }
+

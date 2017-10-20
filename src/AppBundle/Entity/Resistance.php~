@@ -129,28 +129,5 @@ class Resistance
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     private $resistprod;
-
-    /**
-     * Set resistprod
-     *
-     * @param \AppBundle\Entity\Product $resistprod
-     *
-     * @return Resistance
-     */
-    public function setResistprod(\AppBundle\Entity\Product $resistprod = null)
-    {
-        $this->resistprod = $resistprod;
-
-        return $this;
-    }
-
-    /**
-     * Get resistprod
-     *
-     * @return \AppBundle\Entity\Product
-     */
-    public function getResistprod()
-    {
-        return $this->resistprod;
-    }
 }
+

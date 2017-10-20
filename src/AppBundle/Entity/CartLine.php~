@@ -103,52 +103,5 @@ class CartLine
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     private $prodcartline;
-
-    /**
-     * Set cartcartline
-     *
-     * @param \AppBundle\Entity\Cart $cartcartline
-     *
-     * @return CartLine
-     */
-    public function setCartcartline(\AppBundle\Entity\Cart $cartcartline = null)
-    {
-        $this->cartcartline = $cartcartline;
-
-        return $this;
-    }
-
-    /**
-     * Get cartcartline
-     *
-     * @return \AppBundle\Entity\Cart
-     */
-    public function getCartcartline()
-    {
-        return $this->cartcartline;
-    }
-
-    /**
-     * Set prodcartline
-     *
-     * @param \AppBundle\Entity\Product $prodcartline
-     *
-     * @return CartLine
-     */
-    public function setProdcartline(\AppBundle\Entity\Product $prodcartline = null)
-    {
-        $this->prodcartline = $prodcartline;
-
-        return $this;
-    }
-
-    /**
-     * Get prodcartline
-     *
-     * @return \AppBundle\Entity\Product
-     */
-    public function getProdcartline()
-    {
-        return $this->prodcartline;
-    }
 }
+

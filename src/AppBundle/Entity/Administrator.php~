@@ -63,3 +63,4 @@ class Administrator
         return $this->adminPassword;
     }
 }
+

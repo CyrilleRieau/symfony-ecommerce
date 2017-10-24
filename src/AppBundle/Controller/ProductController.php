@@ -218,6 +218,41 @@ class ProductController extends Controller
 
     return ($productlist);
     }
-    /*futur add
-    */
+     /**
+     * @View(statusCode=Response::HTTP_CREATED serializerGroups={"product"})
+     * @Post ("/products/new")
+     */
+    public function addProductsAction(Request $request)
+    {
+        $product = new Product();
+        $date = new Date();
+        $product->setCover($request->get('cover'))
+        ->setFile($request->get('file'))
+        ->setName($request->get('name'))
+        ->setDescription($request->get('description'))
+        ->setPrice($request->get('price'))
+        ->setBrand($request->get('brand'))
+        ->setAdding($request->$date)
+        ->setIsPremium($request->get('isPremium'))
+        ->setOnSold($request->get('onSold'))
+        ->setVendor($request->get('vendor'))
+        ->setNote($request->get('note'))
+        ->setNumberOfProducts($request->get('numberOfProducts'))
+        ->setNumberOfVote($request->get('numberOfVote'))
+        ->setNumberOfComments($request->get('numberOfComments'))
+        ->setVariety($request->get('variety'))
+        ->setSeedPeriod($request->get('seedPeriod'))
+        ->setSpecies($request->get('species'))
+        ->setType($request->get('type'))
+        ->setHarvest($request->get('harvest'))
+        ->setCarving($request->get('carving'))
+        ->setTreatment($request->get('treatment'))
+        ->setFertilize($request->get('fertilize'));
+
+    $em = $this->get('doctrine.orm.entity_manager');
+    $em->persist($product);
+    $em->flush();
+
+    return $product;
+    }
 }    

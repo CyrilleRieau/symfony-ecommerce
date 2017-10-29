@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
 use AppBundle\Form\Type\PlaceType; 
 use JMS\Serializer\SerializerBuilder;
 use Symfony\Component\Yaml\Yaml;
@@ -219,7 +220,6 @@ class ProductController extends Controller
     return ($productlist);
     }
      /**
-     * @View(statusCode=Response::HTTP_CREATED serializerGroups={"product"})
      * @Post ("/products/new")
      */
     public function addProductsAction(Request $request)

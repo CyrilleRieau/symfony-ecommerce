@@ -702,22 +702,27 @@ class Product
         return $this->fertilize;
     }
 
- /**
-     * @ORM\OneToOne(targetEntity="Exposition", mappedBy="expoprod")
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Irrigation")
+     * @ORM\JoinColumn(name="irrigation_id", referencedColumnName="id")
+     */
+    private $prodirrig;
+    /**
+     * @ORM\ManyToOne(targetEntity="Exposition")
+     * @ORM\JoinColumn(name="exposition_id", referencedColumnName="id")
      */
     private $prodexpo;
     /**
-     * @ORM\OneToOne(targetEntity="Soil", mappedBy="soilprod")
-     */
-    private $prodsoil;
-    /**
-     * @ORM\OneToOne(targetEntity="Resistance", mappedBy="resistprod")
+     * @ORM\ManyToOne(targetEntity="Resistance")
+     * @ORM\JoinColumn(name="resistance_id", referencedColumnName="id")
      */
     private $prodresist;
     /**
-     * @ORM\OneToOne(targetEntity="Irrigation", mappedBy="irrigprod")
+     * @ORM\ManyToOne(targetEntity="Soil")
+     * @ORM\JoinColumn(name="soil_id", referencedColumnName="id")
      */
-    private $prodirrig;
+    private $prodsoil;
      /**
      * @ORM\ManyToMany(targetEntity="Comments", mappedBy="comprod")
      */
@@ -797,5 +802,192 @@ class Product
     {
         return self::COVER_DIRECTORY . $this->getCover();
     }
-}
 
+    /**
+     * Set numberOfProducts
+     *
+     * @param integer $numberOfProducts
+     *
+     * @return Product
+     */
+    public function setNumberOfProducts($numberOfProducts)
+    {
+        $this->numberOfProducts = $numberOfProducts;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfProducts
+     *
+     * @return integer
+     */
+    public function getNumberOfProducts()
+    {
+        return $this->numberOfProducts;
+    }
+
+    /**
+     * Set prodexpo
+     *
+     * @param \AppBundle\Entity\Exposition $prodexpo
+     *
+     * @return Product
+     */
+    public function setProdexpo(\AppBundle\Entity\Exposition $prodexpo = null)
+    {
+        $this->prodexpo = $prodexpo;
+
+        return $this;
+    }
+
+    /**
+     * Get prodexpo
+     *
+     * @return \AppBundle\Entity\Exposition
+     */
+    public function getProdexpo()
+    {
+        return $this->prodexpo;
+    }
+
+    /**
+     * Set prodsoil
+     *
+     * @param \AppBundle\Entity\Soil $prodsoil
+     *
+     * @return Product
+     */
+    public function setProdsoil(\AppBundle\Entity\Soil $prodsoil = null)
+    {
+        $this->prodsoil = $prodsoil;
+
+        return $this;
+    }
+
+    /**
+     * Get prodsoil
+     *
+     * @return \AppBundle\Entity\Soil
+     */
+    public function getProdsoil()
+    {
+        return $this->prodsoil;
+    }
+
+    /**
+     * Set prodresist
+     *
+     * @param \AppBundle\Entity\Resistance $prodresist
+     *
+     * @return Product
+     */
+    public function setProdresist(\AppBundle\Entity\Resistance $prodresist = null)
+    {
+        $this->prodresist = $prodresist;
+
+        return $this;
+    }
+
+    /**
+     * Get prodresist
+     *
+     * @return \AppBundle\Entity\Resistance
+     */
+    public function getProdresist()
+    {
+        return $this->prodresist;
+    }
+
+    /**
+     * Set prodirrig
+     *
+     * @param \AppBundle\Entity\Irrigation $prodirrig
+     *
+     * @return Product
+     */
+    public function setProdirrig(\AppBundle\Entity\Irrigation $prodirrig = null)
+    {
+        $this->prodirrig = $prodirrig;
+
+        return $this;
+    }
+
+    /**
+     * Get prodirrig
+     *
+     * @return \AppBundle\Entity\Irrigation
+     */
+    public function getProdirrig()
+    {
+        return $this->prodirrig;
+    }
+
+    /**
+     * Add prodcom
+     *
+     * @param \AppBundle\Entity\Comments $prodcom
+     *
+     * @return Product
+     */
+    public function addProdcom(\AppBundle\Entity\Comments $prodcom)
+    {
+        $this->prodcom[] = $prodcom;
+
+        return $this;
+    }
+
+    /**
+     * Remove prodcom
+     *
+     * @param \AppBundle\Entity\Comments $prodcom
+     */
+    public function removeProdcom(\AppBundle\Entity\Comments $prodcom)
+    {
+        $this->prodcom->removeElement($prodcom);
+    }
+
+    /**
+     * Get prodcom
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProdcom()
+    {
+        return $this->prodcom;
+    }
+
+    /**
+     * Add cartlineprod
+     *
+     * @param \AppBundle\Entity\CartLine $cartlineprod
+     *
+     * @return Product
+     */
+    public function addCartlineprod(\AppBundle\Entity\CartLine $cartlineprod)
+    {
+        $this->cartlineprod[] = $cartlineprod;
+
+        return $this;
+    }
+
+    /**
+     * Remove cartlineprod
+     *
+     * @param \AppBundle\Entity\CartLine $cartlineprod
+     */
+    public function removeCartlineprod(\AppBundle\Entity\CartLine $cartlineprod)
+    {
+        $this->cartlineprod->removeElement($cartlineprod);
+    }
+
+    /**
+     * Get cartlineprod
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCartlineprod()
+    {
+        return $this->cartlineprod;
+    }
+}

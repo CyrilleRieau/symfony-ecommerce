@@ -38,49 +38,28 @@ AppBundle\Entity\Product:
       groups : ['product']
     fertilize :
       groups : ['product']
+    cover : 
+      groups : ['product']
+    file :
+      groups : ['product']
 
 AppBundle\Entity\Soil:
   attributes:
-    acid:
+    label:
       groups : ['product']
-    clayey:
-      groups : ['product']
-    chalky:
-      groups : ['product']
-    sandy:
-      groups : ['product']
-    humus:
-      groups : ['product']
-    product_id:    
-      groups : ['product']
-
+    
 AppBundle\Entity\Resistance:
   attributes:
-    inferior_0°C:
+    label:
       groups : ['product']
-    between_0_and_5°C:
-      groups : ['product']
-    superior_5°C:
-      groups : ['product']
-    product_id:
-      groups : ['product']
-
+    
 AppBundle\Entity\Irrigation:
   attributes:
-    low:
+    label:
       groups : ['product']
-    middle:
-      groups : ['product']
-    high:
-      groups : ['product']
-    product_id:
-      groups : ['product']
-
+    
 AppBundle\Entity\Exposition:
   attributes:
-    sunny:
+    label:
       groups : ['product']
-    windy:
-      groups : ['product']
-    product_id:
-      groups : ['product']
+    

@@ -22,40 +22,11 @@ class Soil
     private $id;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="acid", type="boolean")
+     * @var string
+     * 
+     * @ORM\Column(name="label", type="string", length=255)
      */
-    private $acid;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="clayey", type="boolean")
-     */
-    private $clayey;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="chalky", type="boolean")
-     */
-    private $chalky;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="sandy", type="boolean")
-     */
-    private $sandy;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="humus", type="boolean")
-     */
-    private $humus;
-
+    private $label;
 
     /**
      * Get id
@@ -68,148 +39,68 @@ class Soil
     }
 
     /**
-     * Set acid
+     * Set label
      *
-     * @param boolean $acid
+     * @param string $label
      *
      * @return Soil
      */
-    public function setAcid($acid)
+    public function setLabel($label)
     {
-        $this->acid = $acid;
+        $this->label = $label;
 
         return $this;
     }
 
     /**
-     * Get acid
+     * Get label
      *
-     * @return bool
+     * @return string
      */
-    public function getAcid()
+    public function getLabel()
     {
-        return $this->acid;
-    }
-
-    /**
-     * Set clayey
-     *
-     * @param boolean $clayey
-     *
-     * @return Soil
-     */
-    public function setClayey($clayey)
-    {
-        $this->clayey = $clayey;
-
-        return $this;
-    }
-
-    /**
-     * Get clayey
-     *
-     * @return bool
-     */
-    public function getClayey()
-    {
-        return $this->clayey;
-    }
-
-    /**
-     * Set chalky
-     *
-     * @param boolean $chalky
-     *
-     * @return Soil
-     */
-    public function setChalky($chalky)
-    {
-        $this->chalky = $chalky;
-
-        return $this;
-    }
-
-    /**
-     * Get chalky
-     *
-     * @return bool
-     */
-    public function getChalky()
-    {
-        return $this->chalky;
-    }
-
-    /**
-     * Set sandy
-     *
-     * @param boolean $sandy
-     *
-     * @return Soil
-     */
-    public function setSandy($sandy)
-    {
-        $this->sandy = $sandy;
-
-        return $this;
-    }
-
-    /**
-     * Get sandy
-     *
-     * @return bool
-     */
-    public function getSandy()
-    {
-        return $this->sandy;
-    }
-
-    /**
-     * Set humus
-     *
-     * @param boolean $humus
-     *
-     * @return Soil
-     */
-    public function setHumus($humus)
-    {
-        $this->humus = $humus;
-
-        return $this;
-    }
-
-    /**
-     * Get humus
-     *
-     * @return bool
-     */
-    public function getHumus()
-    {
-        return $this->humus;
+        return $this->label;
     }
     /**
-     * @ORM\OneToOne(targetEntity="Product", inversedBy="prodsoil")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="prodsoil")
      */
     private $soilprod;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->soilprod = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set soilprod
+     * Add soilprod
      *
      * @param \AppBundle\Entity\Product $soilprod
      *
      * @return Soil
      */
-    public function setSoilprod(\AppBundle\Entity\Product $soilprod = null)
+    public function addSoilprod(\AppBundle\Entity\Product $soilprod)
     {
-        $this->soilprod = $soilprod;
+        $this->soilprod[] = $soilprod;
 
         return $this;
     }
 
     /**
+     * Remove soilprod
+     *
+     * @param \AppBundle\Entity\Product $soilprod
+     */
+    public function removeSoilprod(\AppBundle\Entity\Product $soilprod)
+    {
+        $this->soilprod->removeElement($soilprod);
+    }
+
+    /**
      * Get soilprod
      *
-     * @return \AppBundle\Entity\Product
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSoilprod()
     {

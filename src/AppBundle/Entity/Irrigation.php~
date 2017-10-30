@@ -22,26 +22,11 @@ class Irrigation
     private $id;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="low", type="boolean")
+     * @var string
+     * 
+     * @ORM\Column(name="label", type="string", length=255)
      */
-    private $low;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="middle", type="boolean")
-     */
-    private $middle;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="high", type="boolean")
-     */
-    private $high;
-
+    private $label;
 
     /**
      * Get id
@@ -53,81 +38,32 @@ class Irrigation
         return $this->id;
     }
 
+
     /**
-     * Set low
+     * Set label
      *
-     * @param boolean $low
+     * @param string $label
      *
      * @return Irrigation
      */
-    public function setLow($low)
+    public function setLabel($label)
     {
-        $this->low = $low;
+        $this->label = $label;
 
         return $this;
     }
 
     /**
-     * Get low
+     * Get label
      *
-     * @return bool
+     * @return string
      */
-    public function getLow()
+    public function getLabel()
     {
-        return $this->low;
+        return $this->label;
     }
-
     /**
-     * Set middle
-     *
-     * @param boolean $middle
-     *
-     * @return Irrigation
-     */
-    public function setMiddle($middle)
-    {
-        $this->middle = $middle;
-
-        return $this;
-    }
-
-    /**
-     * Get middle
-     *
-     * @return bool
-     */
-    public function getMiddle()
-    {
-        return $this->middle;
-    }
-
-    /**
-     * Set high
-     *
-     * @param boolean $high
-     *
-     * @return Irrigation
-     */
-    public function setHigh($high)
-    {
-        $this->high = $high;
-
-        return $this;
-    }
-
-    /**
-     * Get high
-     *
-     * @return bool
-     */
-    public function getHigh()
-    {
-        return $this->high;
-    }
-     /**
-     * @ORM\OneToOne(targetEntity="Product", inversedBy="prodirrig")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="prodirrig")
      */
     private $irrigprod;
 }
-

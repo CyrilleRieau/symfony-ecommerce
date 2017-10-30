@@ -52,9 +52,7 @@ class ProductController extends Controller
          return $response;
         //return serialize($products);
     
-}
-
-    
+        }
 
     /**
      * @View(serializerGroups={"product"})
@@ -75,11 +73,11 @@ class ProductController extends Controller
             return new JsonResponse(['message' => 'Exposition not found'], Response::HTTP_NOT_FOUND);
         }
         foreach($expositions as $exposition) {
-        if($exposition->getExpoprod()->getId() === $product->getId()){
-            if ($exposition->getSunny() === true){
-                $exposition = 'Sunny';
+        if($exposition->getId() === $product->getProdexpo()){
+            if ($product->getProdexpo() === 1){
+                $exposition = $exposition->getLabel() === 1;
             } else {
-                $exposition = 'Windy';
+                $exposition = $exposition->getLabel() === 2;
             }
         }
     }
@@ -92,13 +90,13 @@ class ProductController extends Controller
             return new JsonResponse(['message' => 'Irrigation not found'], Response::HTTP_NOT_FOUND);
         }
         foreach($irrigations as $irrigation) {
-        if($irrigation->getIrrigprod()->getId() === $product->getId()){
-            if($irrigation->getLow()=== true && $irrigation->getMiddle() !== true && $irrigation->getHigh() !== true){
-            $irrigation = 'Low';
-            } elseif($irrigation->getMiddle()=== true && $irrigation->getLow()!== true && $irrigation->getHigh()!== true){
-            $irrigation = 'Middle';
-            } elseif ($irrigation->getHigh()=== true && $irrigation->getMiddle()!== true && $irrigation->getLow()!== true){
-            $irrigation = 'High';
+        if($irrigation->getId() === $product->getProdirrig()){
+            if($product->getProdirrig()=== 1){
+            $irrigation = $irrigation->getLabel()=== 1;
+            } elseif($product->getProdirrig()=== 2){
+                $irrigation = $irrigation->getLabel()=== 2;
+            } elseif ($product->getProdirrig()=== 3 ){
+                $irrigation = $irrigation->getLabel()=== 3;
             }
         }
     }
@@ -110,13 +108,13 @@ class ProductController extends Controller
             return new JsonResponse(['message' => 'Resistance not found'], Response::HTTP_NOT_FOUND);
         }
         foreach($resistances as $resistance) {
-        if($resistance->getResistprod()->getId() === $product->getId()){
-            if ($resistance->getInferior0°C() === true && $resistance->getBetween0And5°C() !== true && $resistance->getSuperior5°C() !== true) {
-                $resistance = 'Inferior to 0°C';
-            } elseif ($resistance->getInferior0°C() !== true && $resistance->getBetween0And5°C() === true && $resistance->getSuperior5°C() !== true) {
-                $resistance = 'Between 0°C and 5°C';
-            } elseif ($resistance->getInferior0°C() !== true && $resistance->getBetween0And5°C() !== true && $resistance->getSuperior5°C() === true) {
-                $resistance = 'Superior to 5°C';
+        if($resistance->getId() === $product->getProdresist()){
+            if ( $product->getProdresist()=== 1 ) {
+                $resistance = $resistance->getLabel()===1;
+            } elseif ($product->getProdresist() === 2 ) {
+                $resistance = $resistance->getLabel()===2;
+            } elseif ($product->getProdresist()=== 3 ) {
+                $resistance = $resistance->getLabel()===3;
             }
         }
     }
@@ -128,70 +126,70 @@ class ProductController extends Controller
             return new JsonResponse(['message' => 'Soil not found'], Response::HTTP_NOT_FOUND);
         };
         foreach($soils as $soil) {
-        if($soil->getSoilprod()->getId() === $product->getId()){
-            if ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() !== true && $soil->getSandy() !== true && $soil->getHumus() !== true) {
-                $soil = 'Acid';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() === true && $soil->getChalky() !== true && $soil->getSandy() !== true && $soil->getHumus() !== true) {
-                $soil = 'Clayey';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() !== true && $soil->getChalky() === true && $soil->getSandy() !== true && $soil->getHumus() !== true) {
-                $soil = 'Chalky';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() !== true && $soil->getChalky() !== true && $soil->getSandy() === true && $soil->getHumus() !== true) {
-                $soil = 'Sandy';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() !== true && $soil->getChalky() !== true && $soil->getSandy() !== true && $soil->getHumus() === true) {
-                $soil = 'Humus';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() === true && $soil->getChalky() !== true && $soil->getSandy() !== true && $soil->getHumus() !== true) {
-            $soil = 'Acid and Clayey';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() === true && $soil->getSandy() !== true && $soil->getHumus() !== true) {
-            $soil = 'Acid and Chalky';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() !== true && $soil->getSandy() === true && $soil->getHumus() !== true) {
-            $soil = 'Acid and Sandy';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() !== true && $soil->getSandy() !== true && $soil->getHumus() === true) {
-            $soil = 'Acid and Humus';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() === true && $soil->getChalky() === true && $soil->getSandy() !== true && $soil->getHumus() !== true) {
-            $soil = 'Clayey and Chalky';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() === true && $soil->getChalky() !== true && $soil->getSandy() === true && $soil->getHumus() !== true) {
-            $soil = 'Clayey and Sandy';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() === true && $soil->getChalky() !== true && $soil->getSandy() !== true && $soil->getHumus() === true) {
-            $soil = 'Clayey and Humus';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() !== true && $soil->getChalky() === true && $soil->getSandy() === true && $soil->getHumus() !== true) {
-            $soil = 'Chalky and Sandy';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() !== true && $soil->getChalky() === true && $soil->getSandy() !== true && $soil->getHumus() === true) {
-            $soil = 'Chalky and Humus';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() !== true && $soil->getChalky() !== true && $soil->getSandy() === true && $soil->getHumus() === true) {
-            $soil = 'Sandy and Humus';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() === true && $soil->getChalky() === true && $soil->getSandy() !== true && $soil->getHumus() !== true) {
-            $soil = 'Acid, Clayey and Chalky';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() === true && $soil->getChalky() !== true && $soil->getSandy() === true && $soil->getHumus() !== true) {
-            $soil = 'Acid, Clayey and Sandy';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() === true && $soil->getChalky() !== true && $soil->getSandy() !== true && $soil->getHumus() === true) {
-            $soil = 'Acid, Clayey and Humus';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() === true && $soil->getSandy() === true && $soil->getHumus() !== true) {
-            $soil = 'Acid, Chalky and Sandy';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() === true && $soil->getSandy() !== true && $soil->getHumus() === true) {
-            $soil = 'Acid, Chalky and Humus';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() !== true && $soil->getSandy() === true && $soil->getHumus() === true) {
-            $soil = 'Acid, Sandy and Humus';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() === true && $soil->getChalky() === true && $soil->getSandy() === true && $soil->getHumus() !== true) {
-            $soil = 'Clayey, Chalky and Sandy';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() === true && $soil->getChalky() === true && $soil->getSandy() !== true && $soil->getHumus() === true) {
-            $soil = 'Clayey, Chalky and Humus';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() === true && $soil->getChalky() !== true && $soil->getSandy() === true && $soil->getHumus() === true) {
-            $soil = 'Clayey, Sandy and Humus';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() !== true && $soil->getChalky() === true && $soil->getSandy() === true && $soil->getHumus() === true) {
-            $soil = 'Chalky, Sandy and Humus';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() === true && $soil->getChalky() === true && $soil->getSandy() === true && $soil->getHumus() !== true) {
-            $soil = 'Acid, Clayey, Chalky and Sandy';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() === true && $soil->getChalky() === true && $soil->getSandy() !== true && $soil->getHumus() === true) {
-            $soil = 'Acid, Clayey, Chalky and Humus';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() === true && $soil->getSandy() === true && $soil->getHumus() === true) {
-            $soil = 'Acid, Chalky, Sandy and Humus';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() !== true && $soil->getChalky() === true && $soil->getSandy() === true && $soil->getHumus() === true) {
-            $soil = 'Acid, Chalky, Sandy and Humus';
-            } elseif ($soil->getAcid() !== true && $soil->getClayey() === true && $soil->getChalky() === true && $soil->getSandy() === true && $soil->getHumus() === true) {
-            $soil = 'Clayey, Chalky, Sandy and Humus';
-            } elseif ($soil->getAcid() === true && $soil->getClayey() === true && $soil->getChalky() === true && $soil->getSandy() === true && $soil->getHumus() === true) {
-            $soil = 'All soils';
-            }
+        if($soil->getId() === $product->getProdsoil()){
+            if ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+    $soil= ($soil->getLabel()===1);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+    $soil= ($soil->getLabel()===2);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===3);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===4);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===3);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===4);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===2 && $soil→getLabel()===3);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===2 && $soil→getLabel()===4);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===2 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===3 && $soil→getLabel()===4);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===3 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===4 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===4);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===3 && $soil→getLabel()===4);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===3 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===4 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===2 && $soil→getLabel()===4 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
+} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
+}
         }
     }
         $productlist[] = [   

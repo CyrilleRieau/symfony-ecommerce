@@ -22,26 +22,11 @@ class Irrigation
     private $id;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="low", type="boolean")
+     * @var string
+     * 
+     * @ORM\Column(name="label", type="string", length=255)
      */
-    private $low;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="middle", type="boolean")
-     */
-    private $middle;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="high", type="boolean")
-     */
-    private $high;
-
+    private $label;
 
     /**
      * Get id
@@ -53,101 +38,70 @@ class Irrigation
         return $this->id;
     }
 
+
     /**
-     * Set low
+     * Set label
      *
-     * @param boolean $low
+     * @param string $label
      *
      * @return Irrigation
      */
-    public function setLow($low)
+    public function setLabel($label)
     {
-        $this->low = $low;
+        $this->label = $label;
 
         return $this;
     }
 
     /**
-     * Get low
+     * Get label
      *
-     * @return bool
+     * @return string
      */
-    public function getLow()
+    public function getLabel()
     {
-        return $this->low;
+        return $this->label;
     }
-
     /**
-     * Set middle
-     *
-     * @param boolean $middle
-     *
-     * @return Irrigation
-     */
-    public function setMiddle($middle)
-    {
-        $this->middle = $middle;
-
-        return $this;
-    }
-
-    /**
-     * Get middle
-     *
-     * @return bool
-     */
-    public function getMiddle()
-    {
-        return $this->middle;
-    }
-
-    /**
-     * Set high
-     *
-     * @param boolean $high
-     *
-     * @return Irrigation
-     */
-    public function setHigh($high)
-    {
-        $this->high = $high;
-
-        return $this;
-    }
-
-    /**
-     * Get high
-     *
-     * @return bool
-     */
-    public function getHigh()
-    {
-        return $this->high;
-    }
-     /**
-     * @ORM\OneToOne(targetEntity="Product", inversedBy="prodirrig")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="prodirrig")
      */
     private $irrigprod;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->irrigprod = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set irrigprod
+     * Add irrigprod
      *
      * @param \AppBundle\Entity\Product $irrigprod
      *
      * @return Irrigation
      */
-    public function setIrrigprod(\AppBundle\Entity\Product $irrigprod = null)
+    public function addIrrigprod(\AppBundle\Entity\Product $irrigprod)
     {
-        $this->irrigprod = $irrigprod;
+        $this->irrigprod[] = $irrigprod;
 
         return $this;
     }
 
     /**
+     * Remove irrigprod
+     *
+     * @param \AppBundle\Entity\Product $irrigprod
+     */
+    public function removeIrrigprod(\AppBundle\Entity\Product $irrigprod)
+    {
+        $this->irrigprod->removeElement($irrigprod);
+    }
+
+    /**
      * Get irrigprod
      *
-     * @return \AppBundle\Entity\Product
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIrrigprod()
     {

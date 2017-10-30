@@ -8,3 +8,19 @@ fos_user:
 products:
     type:     rest
     resource: AppBundle\Controller\ProductController    
+
+irrigations:
+    type:     rest
+    resource: AppBundle\Controller\IrrigationController  
+
+expositions:
+    type:     rest
+    resource: AppBundle\Controller\ExpositionController  
+
+resistances:
+    type:     rest
+    resource: AppBundle\Controller\ResistanceController  
+
+soils:
+    type:     rest
+    resource: AppBundle\Controller\SoilController      

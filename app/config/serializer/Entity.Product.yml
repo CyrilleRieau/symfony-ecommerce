@@ -39,3 +39,7 @@ AppBundle\Entity\Product:
       groups : ['product']
     fertilize:
       groups : ['product']
+    cover:
+      groups : ['product']
+    file:
+      groups : ['product']

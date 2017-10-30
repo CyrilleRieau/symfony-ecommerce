@@ -21,20 +21,12 @@ class Exposition
      */
     private $id;
 
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="sunny", type="boolean")
+   /**
+     * @var string
+     * 
+     * @ORM\Column(name="label", type="string", length=255)
      */
-    private $sunny;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="windy", type="boolean")
-     */
-    private $windy;
-
+    private $label;
 
     /**
      * Get id
@@ -46,77 +38,70 @@ class Exposition
         return $this->id;
     }
 
+   
     /**
-     * Set sunny
+     * Set label
      *
-     * @param boolean $sunny
+     * @param string $label
      *
      * @return Exposition
      */
-    public function setSunny($sunny)
+    public function setLabel($label)
     {
-        $this->sunny = $sunny;
+        $this->label = $label;
 
         return $this;
     }
 
     /**
-     * Get sunny
+     * Get label
      *
-     * @return bool
+     * @return string
      */
-    public function getSunny()
+    public function getLabel()
     {
-        return $this->sunny;
-    }
-
-    /**
-     * Set windy
-     *
-     * @param boolean $windy
-     *
-     * @return Exposition
-     */
-    public function setWindy($windy)
-    {
-        $this->windy = $windy;
-
-        return $this;
-    }
-
-    /**
-     * Get windy
-     *
-     * @return bool
-     */
-    public function getWindy()
-    {
-        return $this->windy;
+        return $this->label;
     }
     /**
-     * @ORM\OneToOne(targetEntity="Product", inversedBy="prodexpo")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="prodexpo")
      */
     private $expoprod;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->expoprod = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set expoprod
+     * Add expoprod
      *
      * @param \AppBundle\Entity\Product $expoprod
      *
      * @return Exposition
      */
-    public function setExpoprod(\AppBundle\Entity\Product $expoprod = null)
+    public function addExpoprod(\AppBundle\Entity\Product $expoprod)
     {
-        $this->expoprod = $expoprod;
+        $this->expoprod[] = $expoprod;
 
         return $this;
     }
 
     /**
+     * Remove expoprod
+     *
+     * @param \AppBundle\Entity\Product $expoprod
+     */
+    public function removeExpoprod(\AppBundle\Entity\Product $expoprod)
+    {
+        $this->expoprod->removeElement($expoprod);
+    }
+
+    /**
      * Get expoprod
      *
-     * @return \AppBundle\Entity\Product
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getExpoprod()
     {

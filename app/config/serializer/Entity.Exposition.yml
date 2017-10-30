@@ -1,9 +1,5 @@
 AppBundle\Entity\Product:
     exclusion_policy: none
     properties:
-      sunny:
-        groups : ['product']
-      windy:
-        groups : ['product']
-      product_id:
+      label:
         groups : ['product']

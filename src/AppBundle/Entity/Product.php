@@ -702,22 +702,27 @@ class Product
         return $this->fertilize;
     }
 
- /**
-     * @ORM\OneToOne(targetEntity="Exposition", mappedBy="expoprod")
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Irrigation")
+     * @ORM\JoinColumn(name="irrigation_id", referencedColumnName="id")
+     */
+    private $prodirrig;
+    /**
+     * @ORM\ManyToOne(targetEntity="Exposition")
+     * @ORM\JoinColumn(name="exposition_id", referencedColumnName="id")
      */
     private $prodexpo;
     /**
-     * @ORM\OneToOne(targetEntity="Soil", mappedBy="soilprod")
-     */
-    private $prodsoil;
-    /**
-     * @ORM\OneToOne(targetEntity="Resistance", mappedBy="resistprod")
+     * @ORM\ManyToOne(targetEntity="Resistance")
+     * @ORM\JoinColumn(name="resistance_id", referencedColumnName="id")
      */
     private $prodresist;
     /**
-     * @ORM\OneToOne(targetEntity="Irrigation", mappedBy="irrigprod")
+     * @ORM\ManyToOne(targetEntity="Soil")
+     * @ORM\JoinColumn(name="soil_id", referencedColumnName="id")
      */
-    private $prodirrig;
+    private $prodsoil;
      /**
      * @ORM\ManyToMany(targetEntity="Comments", mappedBy="comprod")
      */

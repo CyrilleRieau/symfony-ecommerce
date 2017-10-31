@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Resistance
@@ -23,10 +24,11 @@ class Resistance
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="label", type="string", length=255)
+     *
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $label;
+    private $type;
+
 
     /**
      * Get id
@@ -38,30 +40,28 @@ class Resistance
         return $this->id;
     }
 
-    
-    
     /**
-     * Set label
+     * Set type
      *
-     * @param string $label
+     * @param string $type
      *
      * @return Resistance
      */
-    public function setLabel($label)
+    public function setType($type)
     {
-        $this->label = $label;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get label
+     * Get type
      *
      * @return string
      */
-    public function getLabel()
+    public function getType()
     {
-        return $this->label;
+        return $this->type;
     }
     /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="prodresist")
@@ -72,40 +72,7 @@ class Resistance
      */
     public function __construct()
     {
-        $this->resistprod = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add resistprod
-     *
-     * @param \AppBundle\Entity\Product $resistprod
-     *
-     * @return Resistance
-     */
-    public function addResistprod(\AppBundle\Entity\Product $resistprod)
-    {
-        $this->resistprod[] = $resistprod;
-
-        return $this;
-    }
-
-    /**
-     * Remove resistprod
-     *
-     * @param \AppBundle\Entity\Product $resistprod
-     */
-    public function removeResistprod(\AppBundle\Entity\Product $resistprod)
-    {
-        $this->resistprod->removeElement($resistprod);
-    }
-
-    /**
-     * Get resistprod
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getResistprod()
-    {
-        return $this->resistprod;
+        $this->resistprod = new ArrayCollection();
     }
 }
+

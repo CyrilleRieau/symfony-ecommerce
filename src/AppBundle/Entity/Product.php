@@ -413,30 +413,7 @@ class Product
         return $this->note;
     }
 
-    /**
-     * Set numberOf
-     *
-     * @param integer $numberOf
-     *
-     * @return Product
-     */
-    public function setNumberOf($numberOf)
-    {
-        $this->numberOf = $numberOf;
-
-        return $this;
-    }
-
-    /**
-     * Get numberOf
-     *
-     * @return int
-     */
-    public function getNumberOf()
-    {
-        return $this->numberOf;
-    }
-
+    
     /**
      * Set numberOfVote
      *
@@ -461,30 +438,7 @@ class Product
         return $this->numberOfVote;
     }
 
-    /**
-     * Set comment
-     *
-     * @param string $comment
-     *
-     * @return Product
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Get comment
-     *
-     * @return string
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
+   
     /**
      * Set numberOfComments
      *

@@ -40,14 +40,30 @@ class IrrigationController extends Controller
            ->getManager()
            ->getRepository('AppBundle:Irrigation')
            ->findAll();
+          
+           
            if (empty($irrigations)) {
                return new JsonResponse(['message' => 'No irrigation on line'], Response::HTTP_NOT_FOUND);
            }
 
-        $data = $this->get('jms_serializer')->serialize($irrigations, 'json');
-        $response = new Response($data);
+           $encoders = array(new XmlEncoder(), new JsonEncoder());
+           $normalizers = array(new ObjectNormalizer());
+           $serializer = new Serializer($normalizers, $encoders);
+           
+           $jsonContent = $serializer->serialize($irrigations,'json');
+
+           $data = new JsonResponse(json_decode($jsonContent));
+           $data->headers->set('Content-Type', 'application/json');
+           return $data; 
+           /*$data = $this->get('jms_serializer')->serialize($irrigations, 'json');
+       $response = new Response($data);
+       
         $response->headers->set('Content-Type', 'application/json');
+        
         return $response;
-       //return serialize($products);
-}
-}
+      var_dump($irrigations);
+     return serialize($irrigations);
+      
+        }
+    */
+    }}  

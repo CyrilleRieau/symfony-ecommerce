@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Exposition
@@ -21,12 +22,13 @@ class Exposition
      */
     private $id;
 
-   /**
+    /**
      * @var string
-     * 
-     * @ORM\Column(name="label", type="string", length=255)
+     *
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $label;
+    private $type;
+
 
     /**
      * Get id
@@ -38,29 +40,28 @@ class Exposition
         return $this->id;
     }
 
-   
     /**
-     * Set label
+     * Set type
      *
-     * @param string $label
+     * @param string $type
      *
      * @return Exposition
      */
-    public function setLabel($label)
+    public function setType($type)
     {
-        $this->label = $label;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get label
+     * Get type
      *
      * @return string
      */
-    public function getLabel()
+    public function getType()
     {
-        return $this->label;
+        return $this->type;
     }
     /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="prodexpo")
@@ -71,40 +72,7 @@ class Exposition
      */
     public function __construct()
     {
-        $this->expoprod = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add expoprod
-     *
-     * @param \AppBundle\Entity\Product $expoprod
-     *
-     * @return Exposition
-     */
-    public function addExpoprod(\AppBundle\Entity\Product $expoprod)
-    {
-        $this->expoprod[] = $expoprod;
-
-        return $this;
-    }
-
-    /**
-     * Remove expoprod
-     *
-     * @param \AppBundle\Entity\Product $expoprod
-     */
-    public function removeExpoprod(\AppBundle\Entity\Product $expoprod)
-    {
-        $this->expoprod->removeElement($expoprod);
-    }
-
-    /**
-     * Get expoprod
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getExpoprod()
-    {
-        return $this->expoprod;
+        $this->expoprod = new ArrayCollection();
     }
 }
+

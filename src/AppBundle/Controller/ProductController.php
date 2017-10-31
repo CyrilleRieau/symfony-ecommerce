@@ -46,10 +46,15 @@ class ProductController extends Controller
                 return new JsonResponse(['message' => 'No products on line'], Response::HTTP_NOT_FOUND);
             }
 
-         $data = $this->get('jms_serializer')->serialize($products, 'json');
-         $response = new Response($data);
-         $response->headers->set('Content-Type', 'application/json');
-         return $response;
+            $encoders = array(new XmlEncoder(), new JsonEncoder());
+            $normalizers = array(new ObjectNormalizer());
+            $serializer = new Serializer($normalizers, $encoders);
+            
+            $jsonContent = $serializer->serialize($products,'json');
+ 
+            $data = new JsonResponse(json_decode($jsonContent));
+            $data->headers->set('Content-Type', 'application/json');
+            return $data; 
         //return serialize($products);
     
         }

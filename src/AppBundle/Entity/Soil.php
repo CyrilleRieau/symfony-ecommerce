@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Soil
@@ -23,10 +24,11 @@ class Soil
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="label", type="string", length=255)
+     *
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $label;
+    private $type;
+
 
     /**
      * Get id
@@ -39,27 +41,27 @@ class Soil
     }
 
     /**
-     * Set label
+     * Set type
      *
-     * @param string $label
+     * @param string $type
      *
      * @return Soil
      */
-    public function setLabel($label)
+    public function setType($type)
     {
-        $this->label = $label;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get label
+     * Get type
      *
      * @return string
      */
-    public function getLabel()
+    public function getType()
     {
-        return $this->label;
+        return $this->type;
     }
     /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="prodsoil")
@@ -70,40 +72,7 @@ class Soil
      */
     public function __construct()
     {
-        $this->soilprod = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add soilprod
-     *
-     * @param \AppBundle\Entity\Product $soilprod
-     *
-     * @return Soil
-     */
-    public function addSoilprod(\AppBundle\Entity\Product $soilprod)
-    {
-        $this->soilprod[] = $soilprod;
-
-        return $this;
-    }
-
-    /**
-     * Remove soilprod
-     *
-     * @param \AppBundle\Entity\Product $soilprod
-     */
-    public function removeSoilprod(\AppBundle\Entity\Product $soilprod)
-    {
-        $this->soilprod->removeElement($soilprod);
-    }
-
-    /**
-     * Get soilprod
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSoilprod()
-    {
-        return $this->soilprod;
+        $this->soilprod = new ArrayCollection();
     }
 }
+

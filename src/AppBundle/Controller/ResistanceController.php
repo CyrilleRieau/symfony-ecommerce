@@ -44,10 +44,15 @@ class ResistanceController extends Controller
                return new JsonResponse(['message' => 'No resistance on line'], Response::HTTP_NOT_FOUND);
            }
 
-        $data = $this->get('jms_serializer')->serialize($resistances, 'json');
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+           $encoders = array(new XmlEncoder(), new JsonEncoder());
+           $normalizers = array(new ObjectNormalizer());
+           $serializer = new Serializer($normalizers, $encoders);
+           
+           $jsonContent = $serializer->serialize($resistances,'json');
+
+           $data = new JsonResponse(json_decode($jsonContent));
+           $data->headers->set('Content-Type', 'application/json');
+           return $data; 
        //return serialize($products);
    
 }

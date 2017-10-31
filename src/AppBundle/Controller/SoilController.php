@@ -44,10 +44,15 @@ class SoilController extends Controller
                return new JsonResponse(['message' => 'No soil on line'], Response::HTTP_NOT_FOUND);
            }
 
-        $data = $this->get('jms_serializer')->serialize($soils, 'json');
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+           $encoders = array(new XmlEncoder(), new JsonEncoder());
+           $normalizers = array(new ObjectNormalizer());
+           $serializer = new Serializer($normalizers, $encoders);
+           
+           $jsonContent = $serializer->serialize($soils,'json');
+
+           $data = new JsonResponse(json_decode($jsonContent));
+           $data->headers->set('Content-Type', 'application/json');
+           return $data; 
        //return serialize($products);
         }
 }

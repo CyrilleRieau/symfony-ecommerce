@@ -45,10 +45,15 @@ class ExpositionController extends Controller
                return new JsonResponse(['message' => 'No exposition on line'], Response::HTTP_NOT_FOUND);
            }
 
-        $data = $this->get('jms_serializer')->serialize($expositions, 'json');
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+           $encoders = array(new XmlEncoder(), new JsonEncoder());
+           $normalizers = array(new ObjectNormalizer());
+           $serializer = new Serializer($normalizers, $encoders);
+           
+           $jsonContent = $serializer->serialize($expositions,'json');
+
+           $data = new JsonResponse(json_decode($jsonContent));
+           $data->headers->set('Content-Type', 'application/json');
+           return $data; 
        //return serialize($products);
    
 }

@@ -45,21 +45,20 @@ AppBundle\Entity\Product:
 
 AppBundle\Entity\Soil:
   attributes:
-    label:
+    type:
       groups : ['product']
-    
+
 AppBundle\Entity\Resistance:
   attributes:
-    label:
+    type:
       groups : ['product']
-    
-AppBundle\Entity\Irrigation:
+
+AppBundle\Entity\Irrigation:  
   attributes:
-    label:
+    type:
       groups : ['product']
-    
+
 AppBundle\Entity\Exposition:
   attributes:
-    label:
+    type:
       groups : ['product']
-    

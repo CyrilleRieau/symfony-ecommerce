@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Irrigation
@@ -23,10 +24,11 @@ class Irrigation
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="label", type="string", length=255)
+     *
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $label;
+    private $type;
+
 
     /**
      * Get id
@@ -38,29 +40,28 @@ class Irrigation
         return $this->id;
     }
 
-
     /**
-     * Set label
+     * Set type
      *
-     * @param string $label
+     * @param string $type
      *
      * @return Irrigation
      */
-    public function setLabel($label)
+    public function setType($type)
     {
-        $this->label = $label;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get label
+     * Get type
      *
      * @return string
      */
-    public function getLabel()
+    public function getType()
     {
-        return $this->label;
+        return $this->type;
     }
     /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="prodirrig")
@@ -71,40 +72,7 @@ class Irrigation
      */
     public function __construct()
     {
-        $this->irrigprod = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add irrigprod
-     *
-     * @param \AppBundle\Entity\Product $irrigprod
-     *
-     * @return Irrigation
-     */
-    public function addIrrigprod(\AppBundle\Entity\Product $irrigprod)
-    {
-        $this->irrigprod[] = $irrigprod;
-
-        return $this;
-    }
-
-    /**
-     * Remove irrigprod
-     *
-     * @param \AppBundle\Entity\Product $irrigprod
-     */
-    public function removeIrrigprod(\AppBundle\Entity\Product $irrigprod)
-    {
-        $this->irrigprod->removeElement($irrigprod);
-    }
-
-    /**
-     * Get irrigprod
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIrrigprod()
-    {
-        return $this->irrigprod;
+        $this->irrigprod = new ArrayCollection();
     }
 }
+

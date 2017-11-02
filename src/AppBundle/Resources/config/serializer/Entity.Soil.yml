@@ -1,0 +1,6 @@
+AppBundle\Entity\Soil:
+  exclusion_policy: none
+  properties:
+    type:
+      groups : ['product']
+

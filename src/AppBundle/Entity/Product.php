@@ -74,7 +74,7 @@ class Product
     private $brand;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
      * @ORM\Column(name="adding", type="date")
      */

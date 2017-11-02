@@ -1,0 +1,5 @@
+AppBundle\Entity\Exposition:
+  exclusion_policy: none
+  properties:
+    type:
+      groups : ['product']

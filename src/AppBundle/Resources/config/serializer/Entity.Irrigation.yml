@@ -1,0 +1,5 @@
+AppBundle\Entity\Irrigation:  
+  exclusion_policy: none
+  properties:
+    type:
+      groups : ['product']

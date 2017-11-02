@@ -1,0 +1,77 @@
+AppBundle\Entity\Product:
+  exclusion_policy: none
+  properties:
+    name:
+      expose: true
+      groups : ['product'] 
+    description : 
+      expose: true
+      groups : ['product']
+    adding:
+      expose: true
+      groups: ['product']
+    price:
+      expose: true
+      groups : ['product']
+    brand :
+      expose: true
+      groups : ['product']
+    isPremium :
+      expose: true
+      groups : ['product']
+    onSold :
+      expose: true
+      groups : ['product']
+    vendor :
+      expose: true
+      groups : ['product']
+    note :
+      expose: true
+      groups : ['product']
+    numberOfProducts :
+      expose: true
+      groups : ['product']
+    numberOfVote :
+      expose: true 
+      groups : ['product']
+    numberOfComments :
+      expose: true
+      groups : ['product']
+    variety :
+      expose: true
+      groups : ['product']
+    seedPeriod :
+      expose: true
+      groups : ['product']
+    species :
+      expose: true
+      groups : ['product']
+    type :
+      expose: true
+      groups : ['product']
+    harvest :
+      expose: true
+      groups : ['product']
+    carving :
+      expose: true
+      groups : ['product']
+    treatment :
+      expose: true
+      groups : ['product']
+    fertilize :
+      expose: true
+      groups : ['product']
+    cover :
+      expose: true       
+      groups : ['product']
+    file :
+      expose: true    
+      groups : ['product']
+    prodirrig:
+      groups: ['product']
+    prodexpo:
+      groups: ['product']
+    prodresist:
+      groups: ['product']
+    prodsoil: 
+      groups: ['product']

@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
 
 framework:
     #esi: ~
@@ -18,7 +19,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    serializer: { enable_annotations: false }
+    #serializer: { enable_annotations: false }
     templating:
         engines: ['twig']
     default_locale: '%locale%'
@@ -79,7 +80,7 @@ fos_user:
 
 fos_rest:
     serializer:
-        serialize_null:  true
+        serialize_null: true
     routing_loader:
         include_format: false
     disable_csrf_role: null
@@ -152,3 +153,11 @@ jms_serializer:
         datetime:
             default_format: "Y-m-d\\TH:i:sP"
             default_timezone: "UTC"
+    metadata:
+        # Using auto-detection, the mapping files for each bundle will be
+        # expected in the Resources/config/serializer directory.
+        #
+        # Example:
+        # class: My\FooBundle\Entity\User
+        # expected path: @MyFooBundle/Resources/config/serializer/Entity.User.(yml|xml|php)
+        auto_detection: true

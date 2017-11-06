@@ -253,7 +253,11 @@ class ProductController extends Controller
         ->setHarvest($request->get('harvest'))
         ->setCarving($request->get('carving'))
         ->setTreatment($request->get('treatment'))
-        ->setFertilize($request->get('fertilize'));
+        ->setFertilize($request->get('fertilize'))
+        ->setProdIrrig($request->get('prodirrig'))
+        ->setProdExpo($request->get('prodexpo'))
+        ->setProdResist($request->get('prodresist'))
+        ->setProdSoil($request->get('prodsoil'));
 
     $em = $this->get('doctrine.orm.entity_manager');
     $em->persist($product);

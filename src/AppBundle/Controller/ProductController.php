@@ -29,6 +29,7 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class ProductController extends Controller
 {
@@ -66,8 +67,8 @@ class ProductController extends Controller
      * @View(serializerGroups={"product"})
      * @Get ("/products/{id}")
      */
-    public function getProductAction( Request $request)
-    {
+    public function getProductAction( Request $request){
+
         $product = $this->getDoctrine()
                 ->getRepository('AppBundle:Product')
                 ->find($request->get('id'));
@@ -136,68 +137,68 @@ class ProductController extends Controller
         foreach($soils as $soil) {
         if($soil->getId() === $product->getProdsoil()){
             if ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
-    $soil= ($soil->getLabel()===1);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
-    $soil= ($soil->getLabel()===2);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===3);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===4);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===3);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===4);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===2 && $soil→getLabel()===3);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===2 && $soil→getLabel()===4);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===2 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===3 && $soil→getLabel()===4);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===3 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===4 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===4);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===3 && $soil→getLabel()===4);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===3 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===4 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===2 && $soil→getLabel()===4 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
-} elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
-    $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
-}
+                $soil= ($soil->getLabel()===1);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+                $soil= ($soil->getLabel()===2);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===3);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===4);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===2);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===3);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===4);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===2 && $soil→getLabel()===3);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===2 && $soil→getLabel()===4);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===2 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===3 && $soil→getLabel()===4);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===3 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===4 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===4);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===3 && $soil→getLabel()===4);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===3 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===4 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===2 && $soil→getLabel()===4 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 0 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
+            } elseif ($product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1 && $product->getProdsoil() === 1) {
+                $soil= ($soil→getLabel()===1 && $soil→getLabel()===2 && $soil→getLabel()===3 && $soil→getLabel()===4 && $soil→getLabel()===5);
+            }
         }
     }
         $productlist[] = [   
@@ -225,39 +226,41 @@ class ProductController extends Controller
 
     return ($productlist);
     }
-     /**
-     * @Post ("/products/new")
-     */
+    
+    /**
+    * @POST ("/addproduct/new")
+    */
     public function addProductsAction(Request $request)
     {
         $product = new Product();
-        $date = new Date();
-        $product->setCover($request->get('cover'))
-        ->setFile($request->get('file'))
-        ->setName($request->get('name'))
-        ->setDescription($request->get('description'))
-        ->setPrice($request->get('price'))
-        ->setBrand($request->get('brand'))
-        ->setAdding($request->$date)
-        ->setIsPremium($request->get('isPremium'))
-        ->setOnSold($request->get('onSold'))
-        ->setVendor($request->get('vendor'))
-        ->setNote($request->get('note'))
-        ->setNumberOfProducts($request->get('numberOfProducts'))
-        ->setNumberOfVote($request->get('numberOfVote'))
-        ->setNumberOfComments($request->get('numberOfComments'))
-        ->setVariety($request->get('variety'))
-        ->setSeedPeriod($request->get('seedPeriod'))
-        ->setSpecies($request->get('species'))
-        ->setType($request->get('type'))
-        ->setHarvest($request->get('harvest'))
-        ->setCarving($request->get('carving'))
-        ->setTreatment($request->get('treatment'))
-        ->setFertilize($request->get('fertilize'))
-        ->setProdIrrig($request->get('prodirrig'))
-        ->setProdExpo($request->get('prodexpo'))
-        ->setProdResist($request->get('prodresist'))
-        ->setProdSoil($request->get('prodsoil'));
+
+        $product->setCover($request->post('cover'))
+        ->setFile($request->post('file'))
+        ->setName($request->post('name'))
+        ->setDescription($request->post('description'))
+        ->setPrice($request->post('price'))
+        ->setBrand($request->post('brand'))
+        ->setAdding($request->post('adding'))
+        ->setIsPremium($request->post('isPremium'))
+        ->setOnSold($request->post('onSold'))
+        ->setVendor($request->post('vendor'))
+        ->setNote($request->post('note'))
+        ->setNumberOfProducts($request->post('numberOfProducts'))
+        ->setNumberOfVote($request->post('numberOfVote'))
+        ->setNumberOfComments($request->post('numberOfComments'))
+        ->setVariety($request->post('variety'))
+        ->setSeedPeriod($request->post('seedPeriod'))
+        ->setSpecies($request->post('species'))
+        ->setType($request->post('type'))
+        ->setHarvest($request->post('harvest'))
+        ->setCarving($request->post('carving'))
+        ->setTreatment($request->post('treatment'))
+        ->setFertilize($request->post('fertilize'))
+        ->setComments($request->post('comments'))
+        ->setProdIrrig($request->post('prodirrig'))
+        ->setProdExpo($request->post('prodexpo'))
+        ->setProdResist($request->post('prodresist'))
+        ->setProdSoil($request->post('prodsoil'));
 
     $em = $this->get('doctrine.orm.entity_manager');
     $em->persist($product);
